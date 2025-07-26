@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\SsoAccess;
+use App\Models\SsoUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,11 +56,46 @@ class AuthController extends Controller
                 $msg = "Email atau Password anda salah !";
                 return view('auth.login', compact('msg'));
             }
-            $_SESSION['user_id'] = $userId;
+            $_SESSION['user_id'] = auth()->user()->id;
             return redirect('dashboard/riwayat');
         } catch (\Throwable $th) {
             $msg = $th->getMessage();
             return view('auth.login', compact('msg'));
+        }
+    }
+
+    public function admin(Request $request)
+    {
+        $validate = $this->controller->validing($request->all(), [
+            'nik' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validate) {
+            $msg = $validate;
+            return view('auth.login_admin', compact('msg'));
+        }
+
+        try {
+            session_start();
+            $credential = [
+                'nik' => $request->nik,
+                'password' => $request->password
+            ];
+            if (!$userToken = auth()->guard('admin')->attempt($credential)) {
+                return abort(400, "Informasi akun tidak valid");
+            }
+            $user = Auth::guard('admin')->user($userToken);
+            $findAccess = SsoAccess::where('users_id', $user->id)->first();
+            if (!isset($findAccess)) {
+                $msg = 'Anda tidak memiliki akses terhadap Aplikasi ini. Hubungi Manager SDM untuk meminta akses aplikasi';
+                return view('auth.login_admin', compact('msg'));
+            } else {
+                $_SESSION['sso_user_id'] = $user->id;
+                return redirect('dashboard/verify');
+            }
+        } catch (\Throwable $th) {
+            $msg = $th->getMessage();
+            return view('auth.login_admin', compact('msg'));
         }
     }
 
@@ -134,8 +171,16 @@ class AuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        session_start();
+        if (isset($_SESSION['user_id'])) {
+            $_SESSION['user_id'] = null;
+            return redirect('/');
+        }
+        if (isset($_SESSION['sso_user_id'])) {
+            $_SESSION['sso_user_id'] = null;
+            return redirect('/admin/login');
+        }
     }
 }

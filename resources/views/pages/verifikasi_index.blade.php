@@ -1,8 +1,8 @@
 @extends('pages.dashboard')
 @section('dashboard')
     <section>
-        <p class=" font-[rubik] font-[700] md:text-2xl">Riwayat Pengajuan Magang</p>
-        <p class="font-[rubik] md:text-sm">Anda dapat melihat semua riwayat pengajuan magang anda dibawah ini</p>
+        <p class=" font-[rubik] font-[700] md:text-2xl">Daftar Pengajuan Magang</p>
+        <p class="font-[rubik] md:text-sm">Anda dapat melihat semua daftar pengajuan magang anda dibawah ini</p>
         <div class="mt-14">
             <form method="GET" class="flex justify-end mb-3">
                 <input
@@ -59,37 +59,7 @@
                                     @endswitch
                                 </td>
                                 <td class="px-4 py-4 text-center">
-                                    @switch($item->m_status_tabs_id)
-                                        @case(1)
-                                            <div class="flex gap-x-3 justify-center">
-                                                <form id="form-send-{{ $item->id }}" method="POST" action="{{ route('store.sending', $item->id) }}">
-                                                    @csrf
-                                                    <button type="button" onclick="confirmSend('{{ $item->id }}')" class="text-green-600 hover:text-green-800 font-semibold text-sm">Kirim</button>
-                                                </form>
-                                                <form id="form-delete-{{ $item->id }}" method="POST" action="{{ route('store.destroy', $item->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" onclick="confirmDelete('{{ $item->id }}')" class="text-red-600 hover:text-red-800 font-semibold text-sm">Hapus</button>
-                                                </form>
-                                                <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            </div>
-                                            @break
-                                        @case(2)
-                                            <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            @break
-                                        @case(3)
-                                            <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            @break
-                                        @case(4)
-                                            <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            @break
-                                        @case(5)
-                                            <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            @break
-                                        @case(6)
-                                            <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
-                                            @break
-                                    @endswitch
+                                    <a href="verify/show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Lihat</a>
                                 </td>
                             </tr>
                         @empty
