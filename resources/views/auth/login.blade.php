@@ -57,7 +57,7 @@
             </form>
             <div class="text-center flex justify-center gap-x-1 mt-2.5 text-sm">
                 <span>Belum punya akun ?</span>
-                <a class="text-blue-600 hover:text-blue-700 cursor-pointer font-semibold " href="/auth/register">Daftar disini </a>
+                <a class="text-blue-600 hover:text-blue-700 cursor-pointer font-semibold " href="{{ route('register')}}">Daftar disini </a>
             </div>
         </div>
     </section>

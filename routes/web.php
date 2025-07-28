@@ -20,7 +20,7 @@ Route::get('/', function () {
     $_SESSION['user_id'] = null;
     $_SESSION['sso_user_id'] = null;
     return view('auth.login');
-});
+})->name('login');
 Route::get('/admin/login', function () {
     session_start();
     $_SESSION['user_id'] = null;
@@ -29,7 +29,7 @@ Route::get('/admin/login', function () {
 });
 
 Route::post('/auth/login/create', [AuthController::class, 'create'])->name('login.create');
-Route::get('/auth/register', [AuthController::class, 'index']);
+Route::get('/auth/register', [AuthController::class, 'index'])->name('register');
 Route::get('/auth/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::post('/auth/register/store', [AuthController::class, 'store'])->name('register.store');
 Route::get('/dashboard/riwayat', [DashboardController::class, 'index']);
