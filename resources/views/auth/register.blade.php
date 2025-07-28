@@ -72,7 +72,7 @@
                 </form>
             <div class="text-center flex justify-center gap-x-1 mt-2.5 text-sm">
                 <span>Sudah punya akun ?</span>
-                <a class="text-blue-600 hover:text-blue-700 cursor-pointer font-semibold " href="/">Masuk akun anda </a>
+                <a class="text-blue-600 hover:text-blue-700 cursor-pointer font-semibold " href="{{ route('login')}}">Masuk akun anda </a>
             </div>
         </div>
     </section>
