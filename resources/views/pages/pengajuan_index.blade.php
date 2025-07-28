@@ -71,7 +71,7 @@
                                                         @method('DELETE')
                                                         <button type="button" onclick="confirmDelete('{{ $item->id }}')" class="text-red-600 hover:text-red-800 font-semibold text-sm">Hapus</button>
                                                 </form>
-                                                <a href="show/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Detail</a>
+                                                <a href="change/{{$item->id}}" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">Edit</a>
                                             </div>
                                             @break
                                         @case(2)

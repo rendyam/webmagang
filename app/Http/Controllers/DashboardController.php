@@ -121,8 +121,75 @@ class DashboardController extends Controller
             $msg = 'Data anda gagal disimpan. Tunggu 10 menit sebelum Anda dapat mengulangi pengajuan';
             return view('pages.pengajuan_form', compact('msg'));
         }
+    }
 
-        return dd($request->all());
+    public function storeUpdate($id, Request $request)
+    {
+        session_start();
+        if (!isset($_SESSION['user_id']))
+            return redirect('/');
+        $data = TRequestTabs::where('id', $id)->first();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'nim' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required:max:15',
+            'school' => 'required',
+            'levels' => 'required',
+            'spesialitation' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'path_cv' => 'required',
+            'path_submission_letter' => 'required',
+            'path_photo' => 'required',
+        ]);
+        if ($validator->fails()) {
+            $msg = implode(',', $validator->errors()->all());
+            return view('pages.pengajuan_edit', compact('msg', 'data'));
+        }
+
+        try {
+            DB::beginTransaction();
+            $request['users_tabs_id'] = $_SESSION['user_id'];
+            $pengajuan = TRequestTabs::where('id', $id)->first();
+            $pengajuan->update([
+                'name' => $request->name,
+                'nim' => $request->nim,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'school' => $request->school,
+                'levels' => $request->levels,
+                'spesialitation' => $request->spesialitation,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+            ]);
+            if ($request->hasFile('path_cv')) {
+                $file = $request->file('path_cv');
+                $filename = $request->name . '_' . $request->users_tabs_id . '_' . $file->getClientOriginalName();
+                $file->move(storage_path('app/public/file'), $filename);
+                // return dd($filename);
+                $pengajuan->update(['path_cv' => $filename]);
+            }
+            if ($request->hasFile('path_submission_letter')) {
+                $file = $request->file('path_submission_letter');
+                $filename = $request->name . '_' . $request->users_tabs_id . '_' . $file->getClientOriginalName();
+                $file->move(storage_path('app/public/file'), $filename);
+                $pengajuan->update(['path_submission_letter' => $filename]);
+            }
+            if ($request->hasFile('path_photo')) {
+                $file = $request->file('path_photo');
+                $filename = $request->name . '_' . $request->users_tabs_id . '_' . $file->getClientOriginalName();
+                $file->move(storage_path('app/public/file'), $filename);
+                $pengajuan->update(['path_photo' => $filename]);
+            }
+
+            DB::commit();
+            return redirect('/dashboard/riwayat');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $msg = 'Data anda gagal disimpan. Tunggu 10 menit sebelum Anda dapat mengulangi pengajuan';
+            return view('pages.pengajuan_edit', compact('msg', 'data'));
+        }
     }
 
     /**
@@ -188,6 +255,20 @@ class DashboardController extends Controller
             DB::rollBack();
             abort(400, $th->getMessage());
         }
+    }
+
+    public function editpage($id)
+    {
+        session_start();
+        if (!isset($_SESSION['user_id']))
+            return redirect('/');
+
+        $data = TRequestTabs::where('id', $id)->with('status')->first();
+        if (!isset($data)) {
+            return redirect('dashboard/riwayat');
+        }
+        $msg = null;
+        return view('pages.pengajuan_edit', compact('data', 'msg'));
     }
 
     /**

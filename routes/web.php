@@ -34,8 +34,10 @@ Route::get('/auth/logout', [AuthController::class, 'destroy'])->name('logout');
 Route::post('/auth/register/store', [AuthController::class, 'store'])->name('register.store');
 Route::get('/dashboard/riwayat', [DashboardController::class, 'index']);
 Route::get('/dashboard/show/{id}', [DashboardController::class, 'show'])->name('store.show');
+Route::get('/dashboard/change/{id}', [DashboardController::class, 'editpage']);
 Route::get('/dashboard/form', [DashboardController::class, 'create']);
 Route::post('/dashboard/store', [DashboardController::class, 'store'])->name('store.pengajuan');
+Route::post('/dashboard/change-data/{id}', [DashboardController::class, 'storeUpdate'])->name('update.pengajuan');
 Route::post('/dashboard/edit/{id}', [DashboardController::class, 'edit'])->name('store.sending');
 Route::delete('/dashboard/destroy/{id}', [DashboardController::class, 'destroy'])->name('store.destroy');
 
