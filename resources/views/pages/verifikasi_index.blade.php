@@ -20,7 +20,7 @@
                         <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">No</th>
                         <th class="px-4 py-3 text-left text-sm font-[rubik] uppercase tracking-wider">Nama Lengkap</th>
                         <th class="px-4 py-3 text-left text-sm font-[rubik] uppercase tracking-wider">Contact</th>
-                        <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">Jenjang</th>
+                        <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">Instansi</th>
                         <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">Waktu Magang</th>
                         <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">Status Pengajuan</th>
                         <th class="px-4 py-3 text-center text-sm font-[rubik] uppercase tracking-wider">Action</th>
@@ -38,7 +38,10 @@
                                     <p>{{$item->email}}</p>
                                     <span class="text-xs text-gray-500">{{$item->phone}}</span>
                                 </td>
-                                <td class="px-4 py-4 text-center">{{$item->levels  === 0 ? 'SMA' : 'S1'}}</td>
+                                <td class="px-4 py-4 text-start">
+                                    <p class="text-gray-600">{{$item->school}}</p>
+                                    <p class="uppercase">{{$item->levels  === 0 ? 'SMA' : 'S1'}}</p>
+                                </td>
                                 <td class="px-4 py-4 text-center">{{Carbon\Carbon::parse($item->start_date)->format('d M Y')}} - {{Carbon\Carbon::parse($item->end_date)->format('d M Y')}}</td>
                                 <td class="px-4 py-4 text-center">
                                     @switch($item->m_status_tabs_id)
