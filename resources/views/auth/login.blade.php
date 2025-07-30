@@ -11,7 +11,9 @@
 <body>
     <section class="flex h-screen justify-center items-center">
         <div class="relative md:w-3/12 px-8 py-4">
-            <p class="text-lg font-semibold text-center mb-8">Sistem Informasi Pengajuan Magang <br> PT. Krakatau Bandar Samudera</p>
+            <img src="{{ asset('storage/image/kip_logo.png') }}" class="h-10 mx-auto mb-1" alt="logo-auth">
+            <p class="uppercase text-blue-600 text-2xl font-bold text-center mb-1">simagang</p>
+            <p class="text-base font-semibold text-center mb-8">Sistem Informasi Pengajuan Magang <br> PT. Krakatau Bandar Samudera</p>
             <form method="POST" action="{{ route('login.create')}}" class="space-y-4">
                 <!-- Email -->
                 @csrf
