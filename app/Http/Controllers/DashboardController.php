@@ -187,7 +187,7 @@ class DashboardController extends Controller
             return redirect('/dashboard/riwayat');
         } catch (\Throwable $th) {
             DB::rollBack();
-            $msg = 'Data anda gagal disimpan. Tunggu 10 menit sebelum Anda dapat mengulangi pengajuan';
+            $msg = $th->getMessage(); #'Data anda gagal disimpan. Tunggu 10 menit sebelum Anda dapat mengulangi pengajuan';
             return view('pages.pengajuan_edit', compact('msg', 'data'));
         }
     }
