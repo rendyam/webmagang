@@ -167,7 +167,6 @@ class DashboardController extends Controller
                 $file = $request->file('path_cv');
                 $filename = $request->name . '_' . $request->users_tabs_id . '_' . $file->getClientOriginalName();
                 $file->move(storage_path('app/public/file'), $filename);
-                // return dd($filename);
                 $pengajuan->update(['path_cv' => $filename]);
             }
             if ($request->hasFile('path_submission_letter')) {
