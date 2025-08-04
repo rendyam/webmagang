@@ -57,19 +57,19 @@
             </div>
             <div class="flex flex-col gap-1">
                 <p class="font-semibold">Curriculum Vitae</p>
-                <a href="{{ env('APP_URL') . '/' . 'storage/file/' . $data->path_cv }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
+                <a href="{{ asset('storage/file/' . $data->path_cv) }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
                     Lihat File
                 </a>
             </div>
             <div class="flex flex-col gap-1">
                 <p class="font-semibold">Surat Pengajuan</p>
-                <a href="{{ env('APP_URL') . '/' . 'storage/file/' . $data->path_submission_letter }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
+                <a href="{{ asset('storage/file/' . $data->path_submission_letter) }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
                     Lihat File
                 </a>
             </div>
             <div class="flex flex-col gap-1">
                 <p class="font-semibold">Foto Diri</p>
-                <a href="{{ env('APP_URL') . '/' . 'storage/file/' . $data->path_photo }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
+                <a href="{{ asset('storage/file/' . $data->path_photo) }}" target="blank" class="bg-red-700 w-fit hover:bg-red-700 text-white px-3 py-1 text-sm rounded-md">
                     Lihat File
                 </a>
             </div>
