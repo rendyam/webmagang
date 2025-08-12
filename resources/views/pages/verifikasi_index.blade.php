@@ -4,15 +4,20 @@
         <p class=" font-[rubik] font-[700] md:text-2xl">Daftar Pengajuan Magang</p>
         <p class="font-[rubik] md:text-sm">Anda dapat melihat semua daftar pengajuan magang anda dibawah ini</p>
         <div class="mt-14">
-            <form method="GET" class="flex justify-end mb-3">
-                <input
-                    type="text"
-                    name="search"
-                    value="{{ request('search') }}"
-                    placeholder="Cari nama..."
-                    class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 text-sm"
-                >
-            </form>
+            <div class="flex justify-end gap-x-3 mb-3">
+                <form method="GET" action="{{ route('verify.export') }}" class="mr-auto my-auto">
+                    <button type="submit" class="text-white text-sm font-semibold bg-green-600 px-3.5 py-1 border border-green-600 rounded-lg cursor-pointer">Export Excel</button>
+                </form>
+                <form method="GET" >
+                    <input
+                        type="text"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari nama..."
+                        class="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 text-sm"
+                    >
+                </form>
+            </div>
             <div class="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-100">

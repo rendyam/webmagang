@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MagangExport;
 use App\Models\TRequestApproveTabs;
 use App\Models\TRequestTabs;
 use App\Models\TResponseDocumentTabs;
@@ -9,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -45,6 +47,15 @@ class DashboardController extends Controller
         $data = $query->where('m_status_tabs_id', '!=', 1)->with('status')->orderBy('id', 'asc')->paginate(10);
 
         return view('pages.verifikasi_index', compact('data'));
+    }
+
+    public function exportExcel()
+    {
+        session_start();
+        if (!isset($_SESSION['sso_user_id']))
+            return redirect('/dashboard/verify');
+
+        return Excel::download(new MagangExport, 'ReportMagang.xlsx');
     }
 
     /**
