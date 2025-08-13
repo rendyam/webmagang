@@ -45,3 +45,4 @@ Route::post('/auth/admin/login', [AuthController::class, 'admin'])->name('login.
 Route::get('/dashboard/verify', [DashboardController::class, 'verify']);
 Route::post('/dashboard/verify/response/{id}', [DashboardController::class, 'update'])->name('verify.saved');
 Route::get('/dashboard/verify/show/{id}', [DashboardController::class, 'verifyshow'])->name('verify.show');
+Route::get('/dashboard/verify/export', [DashboardController::class, 'exportExcel'])->name('verify.export');
