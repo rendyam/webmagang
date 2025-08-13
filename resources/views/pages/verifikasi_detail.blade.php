@@ -48,6 +48,10 @@
                 <p class="text-sm">{{ $data->levels === 0 ? 'SMA' : 'S1' }}</p>
             </div>
             <div class="flex flex-col gap-1">
+                <p class="font-semibold">Jurusan</p>
+                <p class="text-sm">{{ isset($data->jurusan) ? $data->jurusan : ''  }}</p>
+            </div>
+            <div class="flex flex-col gap-1">
                 <p class="font-semibold">Waktu Magang</p>
                 <p class="text-sm">{{ Carbon\Carbon::parse($data->start_date)->format('d M Y') . ' - ' . Carbon\Carbon::parse($data->end_date)->format('d M Y') }}</p>
             </div>

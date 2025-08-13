@@ -42,6 +42,10 @@
                         <option value="1">S1</option>
                     </select>
                 </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jurusan <span class="text-red-700">*</span></label>
+                    <input type="text" name="jurusan" value="{{isset($data->jurusan) ? $data->jurusan : null}}" placeholder="Masukan Nama Jurusan" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-sm placeholder:pl-2" required>
+                </div>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Bidang Peminatan Magang<span class="text-red-700">*</span></label>
