@@ -20,6 +20,7 @@ class TRequestTabs extends Model
         'school',
         'start_date',
         'end_date',
+        'jurusan',
         'path_submission_letter',
         'path_cv',
         'm_status_tabs_id',

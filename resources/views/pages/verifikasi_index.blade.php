@@ -45,6 +45,7 @@
                                 </td>
                                 <td class="px-4 py-4 text-start">
                                     <p class="text-gray-600">{{$item->school}}</p>
+                                    <p class="text-gray-500">{{isset($item->jurusan) ? $item->jurusan : ''}}</p>
                                     <p class="uppercase">{{$item->levels  === 0 ? 'SMA' : 'S1'}}</p>
                                 </td>
                                 <td class="px-4 py-4 text-center">{{Carbon\Carbon::parse($item->start_date)->format('d M Y')}} - {{Carbon\Carbon::parse($item->end_date)->format('d M Y')}}</td>
