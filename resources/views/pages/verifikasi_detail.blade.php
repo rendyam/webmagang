@@ -45,7 +45,7 @@
             </div>
             <div class="flex flex-col gap-1">
                 <p class="font-semibold">Jenjang</p>
-                <p class="text-sm">{{ $data->levels === 0 ? 'SMA' : 'S1' }}</p>
+                <p class="text-sm">{{ $data->levels === 0 ? 'SMA' : ($data->levels === 1 ? 'S1' : 'S2') }}</p>
             </div>
             <div class="flex flex-col gap-1">
                 <p class="font-semibold">Jurusan</p>
