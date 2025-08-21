@@ -30,7 +30,6 @@ class DashboardController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
         $data = $query->where('users_tabs_id', $_SESSION['user_id'])->with('status')->orderBy('id', 'desc')->paginate(10);
-
         return view('pages.pengajuan_index', compact('data'));
     }
 

@@ -40,6 +40,7 @@
                         <option value="{{$data->levels}}">{{$data->levels == 0 ? 'SMA' : 'S1'}}</option>
                         <option value="0">SMA</option>
                         <option value="1">S1</option>
+                        <option value="2">S2</option>
                     </select>
                 </div>
                 <div>
