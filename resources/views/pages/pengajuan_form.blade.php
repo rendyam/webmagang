@@ -13,7 +13,7 @@
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Induk <span class="text-red-700">*</span></label>
-                <input type="number" name="nim" placeholder="Nomor Induk Siswa/Mahasiswa" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-sm placeholder:pl-2" required>
+                <input type="text" name="nim" placeholder="Nomor Induk Siswa/Mahasiswa" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-sm placeholder:pl-2" required>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>

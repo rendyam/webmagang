@@ -130,7 +130,7 @@ class DashboardController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
             $msg = 'Data anda gagal disimpan. Tunggu 10 menit sebelum Anda dapat mengulangi pengajuan';
-            return view('pages.pengajuan_form', compact('msg'));
+            return view('pages.pengajuan_form', $th->getMessage());
         }
     }
 
